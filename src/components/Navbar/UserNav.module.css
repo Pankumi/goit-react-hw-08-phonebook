@@ -16,14 +16,20 @@
   text-decoration: none;
   font-weight: 500;
 }
-
 .navMenu:hover {
   border-bottom: 1px solid #c83f00;
 }
 .navMenu:active {
   border-bottom: 1px solid #c83f00;
 }
-.btn {
+
+.user {
+  padding: 0 20px;
+  color: #c83f00;
+  font-size: 18px;
+}
+
+.btnLogOut {
   border-radius: 5px;
   background-color: transparent;
   border: 2px solid #c83f00;
@@ -37,8 +43,13 @@
   font-weight: 500;
   margin-left: 10px;
 }
-.user {
-  padding: 0 20px;
-  color: #c83f00;
-  font-size: 18px;
+.btnLogOut:hover{
+  background-color: #c83f00;
+  border: 2px solid #c83f00;
+  color: #ffffff;
+}
+.btnLogOut:active {
+  background-color: #c83f00;
+  border: 2px solid #c83f00;
+  color: #ffffff;
 }

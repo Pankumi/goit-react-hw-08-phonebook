@@ -18,9 +18,9 @@ const AuthNav = () => {
             CONTACTS
           </NavLink>
         </li>
-        <li className={css.linkLogOut}>
+        <li>
           <span className={css.user}>{user.name}</span>
-          <button className={css.btn} type="button" onClick={handleLogout}>
+          <button className={css.btnLogOut} type="button" onClick={handleLogout}>
             LOG OUT
           </button>
         </li>
