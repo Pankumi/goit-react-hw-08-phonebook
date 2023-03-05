@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import css from './AddContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import Notiflix from 'notiflix';
@@ -8,42 +8,25 @@ import { selectContacts } from 'redux/contacts/selectors';
 import { addContact } from 'redux/contacts/operations';
 
 const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const nameInputRef = useRef();
+  const numberInputRef = useRef();
   const contacts = useSelector(selectContacts);
-  // const status = useSelector(selectLoading);
   const dispatch = useDispatch();
 
-  const handelChange = e => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-      default:
-        return;
-    }
-  };
-
   const handleSubmit = e => {
-    if (contacts.some(con => con.name.toLowerCase() === name.toLowerCase())) {
+    e.preventDefault();
+    const name = nameInputRef.current.value;
+    const number = numberInputRef.current.value;
+    if (contacts.some(c => c.name.toLowerCase() === name.toLowerCase())) {
       Notiflix.Notify.warning(`${name} is already in contacts`);
-      //alert(`${name} is already in contacts`);
-      setName('');
-      setNumber('');
-      e.preventDefault();
       return;
     }
-    e.preventDefault();
-    // console.log({ name, number });
+
     dispatch(addContact({ name, number }));
 
-    setName('');
-    setNumber('');
+    e.target.reset();
   };
+
   return (
     <form className={css.form} onSubmit={handleSubmit}>
       <label className={css.label}>
@@ -53,11 +36,10 @@ const ContactForm = () => {
           placeholder="Tim Dalton"
           type="text"
           name="name"
+          ref={nameInputRef}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
-          value={name}
-          onChange={handelChange}
         />
       </label>
       <label className={css.label}>
@@ -67,11 +49,10 @@ const ContactForm = () => {
           placeholder="+380951234567"
           type="tel"
           name="number"
+          ref={numberInputRef}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={number}
-          onChange={handelChange}
         />
       </label>
       <button className={css.btn} type="submit">

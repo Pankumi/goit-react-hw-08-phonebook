@@ -1,20 +1,26 @@
 // import { useDispatch } from 'react-redux';
 // import { logIn } from 'redux/auth/operations';
+import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/user/operations';
 import css from './LoginForm.module.css';
 
 export const LoginForm = () => {
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    const { email, password } = e.target.elements;
+
     const user = {
-      email: email.value,
-      password: password.value,
+      email: emailInputRef.current.value,
+      password: passwordInputRef.current.value,
     };
+    // console.log('user >>', user);
     dispatch(logIn(user));
+
     e.target.reset();
   };
 
@@ -22,7 +28,12 @@ export const LoginForm = () => {
     <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
       <label className={css.label}>
         <p className={css.title}>Email </p>
-        <input className={css.input} type="email" name="email" required />
+        <input 
+          className={css.input} 
+          type="email" 
+          name="email" 
+          ref={emailInputRef}
+          required />
       </label>
       <label className={css.label}>
         <p className={css.title}>Password</p>
@@ -30,6 +41,7 @@ export const LoginForm = () => {
           className={css.input}
           type="password"
           name="password"
+          ref={passwordInputRef}
           minLength={7}
           maxLength={20}
           required

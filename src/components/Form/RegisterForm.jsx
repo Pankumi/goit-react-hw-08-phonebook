@@ -1,20 +1,27 @@
+import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/user/operations';
 // import { register } from 'redux/auth/operations';
 import css from './RegisterForm.module.css';
 
 export const RegisterForm = () => {
+  const nameInputRef = useRef();
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    const { name, email, password } = e.target.elements;
+
     const user = {
-      name: name.value,
-      email: email.value,
-      password: password.value,
+      name: nameInputRef.current.value,
+      email: emailInputRef.current.value,
+      password: passwordInputRef.current.value,
     };
+    console.log('user >>', user);
     dispatch(register(user));
+
     e.target.reset();
   };
 
@@ -26,6 +33,7 @@ export const RegisterForm = () => {
           className={css.input}
           type="text"
           name="name"
+          ref={nameInputRef}
           minLength={2}
           maxLength={30}
           required
@@ -33,7 +41,12 @@ export const RegisterForm = () => {
       </label>
       <label className={css.label}>
         <p className={css.title}>Email</p>
-        <input className={css.input} type="email" name="email" required />
+        <input 
+          className={css.input} 
+          type="email" 
+          name="email"
+          ref={emailInputRef}
+          required />
       </label>
       <label className={css.label}>
         <p className={css.title}>Password</p>
@@ -41,6 +54,7 @@ export const RegisterForm = () => {
           className={css.input}
           type="password"
           name="password"
+          ref={passwordInputRef}
           minLength={7}
           maxLength={20}
           required
