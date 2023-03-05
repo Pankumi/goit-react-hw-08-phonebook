@@ -1,4 +1,6 @@
 .box {
+  width: 380px;
   padding: 30px 15px;
   margin: 0 auto;
+  text-align: center;
 }

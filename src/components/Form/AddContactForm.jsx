@@ -60,7 +60,7 @@ const ContactForm = () => {
           onChange={handelChange}
         />
       </label>
-      <label>
+      <label className={css.label}>
         <p className={css.title}>Number</p>
         <input
           className={css.input}

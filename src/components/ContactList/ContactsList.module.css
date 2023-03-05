@@ -1,6 +1,7 @@
 .list {
   width: 380px;
   margin: 20px auto;
+  /* outline: 1px tomato solid; */
 }
 
 .listItem {
