@@ -1,0 +1,38 @@
+.box {
+  margin: 0 auto;
+  font-weight: normal;
+  padding-bottom: 5px;
+}
+
+.filter {
+  margin-left: 30px;
+  width: 250px;
+  display: block;
+
+  margin: 0 auto;
+  margin-left: 30px;
+  padding-bottom: 20px;
+}
+
+.title {
+  color: #2e6a00;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.inputFilter {
+  margin: 0 auto;
+  height: 30px;
+  width: 300px;
+  border: 1px solid #6d986b;
+  border-radius: 5px;
+}
+.inputFilter:hover,
+:focus {
+  border: 1px solid #0c803c;
+}
+
+
+
