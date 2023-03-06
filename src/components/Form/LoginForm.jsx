@@ -1,5 +1,3 @@
-// import { useDispatch } from 'react-redux';
-// import { logIn } from 'redux/auth/operations';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/user/operations';
@@ -18,8 +16,8 @@ export const LoginForm = () => {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     };
-    dispatch(logIn(user));
 
+    dispatch(logIn(user));
     e.target.reset();
   };
 
