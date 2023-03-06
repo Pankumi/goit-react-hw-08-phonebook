@@ -19,7 +19,6 @@ export const RegisterForm = () => {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     };
-    console.log('user >>', user);
     dispatch(register(user));
 
     e.target.reset();

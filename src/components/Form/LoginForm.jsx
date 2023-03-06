@@ -18,7 +18,6 @@ export const LoginForm = () => {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     };
-    // console.log('user >>', user);
     dispatch(logIn(user));
 
     e.target.reset();

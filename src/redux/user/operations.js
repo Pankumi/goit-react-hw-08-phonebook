@@ -5,11 +5,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-// призначаю токен
+// встановлюю токен
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
-// прибираю токен
+// видалю токен
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
@@ -36,7 +36,6 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const {data} = await axios.post('/users/login', credentials);
-
       setAuthHeader(data.token);
       return data;
     } catch (error) {
